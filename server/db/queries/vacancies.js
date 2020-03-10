@@ -1,9 +1,73 @@
-module.exports.getVacancy = (vacancyid) => {}
+const dbConnection = require('../dbconnection.js');
 
-module.exports.addVacancy = (business_id, title, wage, work_days, work_hours, descr) => {}
+module.exports.getVacancy = (vacancyid, cb) => {
+    const query = `SELECT * FROM vacancies WHERE id=$1;`;
 
-module.exports.setVacancy = (business_id, title, wage, work_days, work_hours, descr) => {}
+    dbConnection.query(
+        query, [vacancyid],
+        (err, res) => {
+            if (err) return cb(err);
+            cb(null, res.rows);
+        }
+    );
+}
 
-module.exports.deleteVacancy = (vacancyid) => {}
+module.exports.addVacancy = (business_id, title, wage, work_days, work_hours, descr, cb) => {
+    const query = `INSERT INTO vacancies (business_id, title, wage, work_days, work_hours, descr) VALUES ($1, $2, $3, $4, $5, $6);`;
 
-module.exports.getVacancies = (applicationid) => {}
+    dbConnection.query(
+        query, [business_id, title, wage, work_days, work_hours, descr],
+        (err, res) => {
+            if (err) return cb(err);
+            cb(null, res);
+        }
+    );
+}
+
+module.exports.setVacancy = (id, business_id, title, wage, work_days, work_hours, descr, cb) => {
+    const query = `UPDATE vacancies SET business_id = $1, title = $2, wage = $3, work_days = $4, work_hours = $5, descr = $6 WHERE id=$7;`;
+
+    dbConnection.query(
+        query, [business_id, title, wage, work_days, work_hours, descr, id],
+        (err, res) => {
+            if (err) return cb(err);
+            cb(null, res);
+        }
+    );
+}
+
+module.exports.deleteVacancy = (vacancyid, cb) => {
+    const query = `DELETE FROM vacancies WHERE id=$1;`;
+
+    dbConnection.query(
+        query, [vacancyid],
+        (err, res) => {
+            if (err) return cb(err);
+            cb(null, res);
+        }
+    );
+}
+
+module.exports.getVacancies = (cb) => {
+    const query = `SELECT * FROM vacancies;`;
+
+    dbConnection.query(
+        query,
+        (err, res) => {
+            if (err) return cb(err);
+            cb(null, res.rows);
+        }
+    );
+}
+
+module.exports.getBVacancies = (businessid, cb) => {
+    const query = `SELECT * FROM vacancies WHERE business_id=$1;`;
+
+    dbConnection.query(
+        query, [businessid],
+        (err, res) => {
+            if (err) return cb(err);
+            cb(null, res.rows);
+        }
+    );
+}

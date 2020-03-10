@@ -13,7 +13,7 @@ module.exports.getVacancy = (vacancyid, cb) => {
 }
 
 module.exports.addVacancy = (business_id, title, wage, work_days, work_hours, descr, cb) => {
-    const query = `INSERT INTO vacancies (business_id, title, wage, work_days, work_hours, descr) VALUES ($1, $2, $3, $4, $5, $6);`;
+    const query = `INSERT INTO vacancies (business_id, title, wage, work_days, work_hours, descr) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
 
     dbConnection.query(
         query, [business_id, title, wage, work_days, work_hours, descr],
@@ -25,7 +25,7 @@ module.exports.addVacancy = (business_id, title, wage, work_days, work_hours, de
 }
 
 module.exports.setVacancy = (id, business_id, title, wage, work_days, work_hours, descr, cb) => {
-    const query = `UPDATE vacancies SET business_id = $1, title = $2, wage = $3, work_days = $4, work_hours = $5, descr = $6 WHERE id=$7;`;
+    const query = `UPDATE vacancies SET business_id = $1, title = $2, wage = $3, work_days = $4, work_hours = $5, descr = $6 WHERE id=$7 RETURNING id;`;
 
     dbConnection.query(
         query, [business_id, title, wage, work_days, work_hours, descr, id],
@@ -37,13 +37,19 @@ module.exports.setVacancy = (id, business_id, title, wage, work_days, work_hours
 }
 
 module.exports.deleteVacancy = (vacancyid, cb) => {
-    const query = `DELETE FROM vacancies WHERE id=$1;`;
-
+    const helperquery = `DELETE FROM applications WHERE vacancy_id=$1;`;
     dbConnection.query(
-        query, [vacancyid],
+        helperquery, [vacancyid],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            const query = `DELETE FROM vacancies WHERE id=$1;`;
+            dbConnection.query(
+                query, [vacancyid],
+                (err, res) => {
+                    if (err) return cb(err);
+                    cb(null, res);
+                }
+            );
         }
     );
 }

@@ -29,3 +29,12 @@ module.exports.deleteApplication = (req, res) => {
         res.send(result);
     });
 };
+
+module.exports.getVacancyApplications = (req, res) => {
+    //Get and return all applications of this user INPUT user id
+    //userid
+    applications.getVacancyApplications(req.body.vacancyid, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+    });
+};

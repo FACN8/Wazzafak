@@ -34,7 +34,7 @@ module.exports.getApplicant = (applicationid, cb) => {
 }
 
 module.exports.getVacancyApplications = (vacancyid, cb) => {
-    const query = 'SELECT * FROM applications WHERE vacancy_id=$1;';
+    const query = `SELECT * FROM applications WHERE vacancy_id=$1;`;
     dbConnection.query(
         query, [vacancyid],
         (err, res) => {

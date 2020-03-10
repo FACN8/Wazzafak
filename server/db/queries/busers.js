@@ -39,7 +39,7 @@ module.exports.setBusiness = (businessid, bname, phone, email, password, address
 }
 
 module.exports.deleteBusiness = (businessid, password, cb) => {
-    const query = 'DELETE FROM busers WHERE id=$1 AND password=$2;';
+    const query = `DELETE FROM busers WHERE id=$1 AND password=$2;`;
     dbConnection.query(
         query, [businessid, password],
         (err, res) => {

@@ -7,13 +7,17 @@ const busers = require('./busers.js');
 const vacancies = require('./vacancies.js');
 const applications = require('./applications.js');
 
+router.post('/ping', (req, res) => {
+    res.send('Pong');
+});
+
 //user routes
 
 //authentication...login & register
 router.get('/vacancy', vacancies.getVacancy);
 router.get('/vacancies', vacancies.getVacancies);
 
-router.get('/business', vacancies.getBusiness);
+router.get('/business', busers.getBusiness);
 
 router.post('/apply', applications.addApplication);
 

@@ -41,8 +41,11 @@ module.exports.deleteProfile = (req, res) => { //EDITS USER DETAILS
         });
 };
 
-module.exports.getApplications = (req, res) => {
+module.exports.getUserApplications = (req, res) => {
     //Get and return all applications of this user INPUT user id
     //userid
-    users.getApplications(req.body.userid, cb);
+    users.getUserApplications(req.body.userid, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+    });
 };

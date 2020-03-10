@@ -7,43 +7,39 @@ const busers = require('./busers.js');
 const vacancies = require('./vacancies.js');
 const applications = require('./applications.js');
 
-router.post('/ping', (req, res) => {
+router.get('/ping', (req, res) => {
     res.send('Pong');
 });
 
-//user routes
-
 //authentication...login & register
-router.get('/vacancy', vacancies.getVacancy);
-router.get('/vacancies', vacancies.getVacancies);
-
-router.get('/business', busers.getBusiness);
-
-router.post('/apply', applications.addApplication);
-
 //user manipulation requests
-router.get('/profile', users.getProfile);
-router.post('/add-profile', users.addProfile);
-router.post('/edit-profile', users.setProfile);
-router.post('/delete-profile', users.deleteProfile);
-
-router.get('/applications', users.getApplications);
-
-//business user manipulation requests
-router.get('/business', busers.getBusiness);
-router.post('/add-business', busers.addBusiness);
-router.post('/edit-business', busers.setBusiness);
-router.post('/delete-business', busers.deleteBusiness);
+router.get('/profile', users.getProfile); //test success
+router.post('/add-profile', users.addProfile); //test success
+router.post('/edit-profile', users.setProfile); //test success
+router.post('/delete-profile', users.deleteProfile); //test success
+router.get('/my-applications', users.getUserApplications); //test success
 
 //authentication...blogin & bregister
-router.get('/bvacancy', vacancies.getBVacancy);
-router.get('/bvacancies', vacancies.getBVacancies);
-router.post('/b-add-vacancy', vacancies.addVacancy);
-router.post('/b-vacancy-edit', vacancies.setVacancy);
-router.post('/b-vacancy-delete', vacancies.deleteVacancy);
+//business user manipulation requests
+router.get('/business', busers.getBusiness); //test success
+router.post('/add-business', busers.addBusiness); //test success
+router.post('/edit-business', busers.setBusiness); //test success
+router.post('/delete-business', busers.deleteBusiness); //test success
 
-router.get('/b-applicant', applications.getApplicant);
-router.post('/b-applicant-delete', applications.deleteApplication);
+//vacancies manipulations
+router.get('/vacancy', vacancies.getVacancy); //test success
+router.get('/vacancies', vacancies.getVacancies); //test success
+router.get('/bvacancies', vacancies.getBVacancies); //test success
+router.post('/add-vacancy', vacancies.addVacancy); //test success
+router.post('/edit-vacancy', vacancies.setVacancy); //test success
+router.post('/delete-vacancy', vacancies.deleteVacancy); //not yet tested
+router.get('/vacancy-applications', applications.getVacancyApplications); //not yet tested
+
+//applications manipulations
+router.get('/applicant', applications.getApplicant); //test success
+router.post('/add-application', applications.addApplication); //test success
+router.post('/delete-application', applications.deleteApplication); //test success
+//edit-application
 
 router.use(error.client);
 router.use(error.server);

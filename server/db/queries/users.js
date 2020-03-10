@@ -48,3 +48,14 @@ module.exports.deleteProfile = (userid, password, cb) => {
         }
     );
 }
+
+module.exports.getUserApplications = (userid, cb) => {
+    const query = 'SELECT * FROM applications WHERE user_id=$1;';
+    dbConnection.query(
+        query, [userid],
+        (err, res) => {
+            if (err) return cb(err);
+            cb(null, res.rows);
+        }
+    );
+}

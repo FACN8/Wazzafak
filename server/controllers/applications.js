@@ -7,7 +7,7 @@ module.exports.addApplication = (req, res) => {
     console.log(req.query)
     applications.addApplication(req.body.userid, req.body.vacancyid, req.body.message, (error, result) => {
         if (error) throw error;
-        res.send(result);
+        res.json(result);
     });
 };
 
@@ -17,7 +17,7 @@ module.exports.getApplicant = (req, res) => {
     applications.getApplicant(req.query.applicationid, (error, result) => {
         if (error) throw error;
 
-        res.send(result);
+        res.json(result);
     });
 };
 
@@ -27,7 +27,7 @@ module.exports.deleteApplication = (req, res) => {
     applications.deleteApplication(req.body.applicationid, (error, result) => {
         if (error) throw error;
 
-        res.send(result);
+        res.json(result);
     });
 };
 
@@ -36,6 +36,6 @@ module.exports.getVacancyApplications = (req, res) => {
     //userid
     applications.getVacancyApplications(req.query.vacancyid, (err, result) => {
         if (err) throw err;
-        res.send(result);
+        res.json(result);
     });
 };

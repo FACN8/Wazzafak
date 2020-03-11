@@ -14,7 +14,7 @@ module.exports.addBusiness = (req, res) => {
     busers.addBusiness(bname, phone, email, password, address, city, country, open_days, open_hours, descr,
         (err, result) => {
             if (err) throw err;
-            res.send(result);
+            res.json(result);
         });
 };
 
@@ -25,7 +25,7 @@ module.exports.setBusiness = (req, res) => { //EDITS USER DETAILS
     busers.setBusiness(id, bname, phone, email, password, address, city, country, open_days, open_hours, descr,
         (err, result) => {
             if (err) throw err;
-            res.send(result);
+            res.json(result);
         });
 };
 
@@ -36,6 +36,6 @@ module.exports.deleteBusiness = (req, res) => { //EDITS USER DETAILS
     busers.deleteBusiness(id, password,
         (err, result) => {
             if (err) throw err;
-            res.send(result);
+            res.json(result);
         });
 };

@@ -5,7 +5,7 @@ module.exports.getVacancy = (req, res) => {
     vacancies.getVacancy(req.query.vacancyid, (error, result) => {
         if (error) throw error;
 
-        res.send(result);
+        res.json(result);
     });
 };
 
@@ -14,25 +14,16 @@ module.exports.getVacancies = (req, res) => {
     vacancies.getVacancies((error, result) => {
         if (error) throw error;
 
-        res.send(result);
+        res.json(result);
     });
 };
-
-// module.exports.getBVacancy = (req, res) => {
-//     //Returns vacancy information for a business user interface
-//     vacancies.getBVacancy(req.body.vacancyid, (error, result) => {
-//         if (error) throw error;
-
-//         res.send(result);
-//     });
-// };
 
 module.exports.getBVacancies = (req, res) => {
     //Returns all vacancies created by a business user INPUT buser id
     vacancies.getBVacancies(req.query.businessid, (error, result) => {
         if (error) throw error;
 
-        res.send(result);
+        res.json(result);
     });
 };
 
@@ -49,7 +40,7 @@ module.exports.addVacancy = (req, res) => {
         (error, result) => {
             if (error) throw error;
 
-            res.send(result);
+            res.json(result);
         }
     );
 };
@@ -68,7 +59,7 @@ module.exports.setVacancy = (req, res) => {
         (error, result) => {
             if (error) throw error;
 
-            res.send(result);
+            res.json(result);
         }
     );
 };
@@ -78,6 +69,6 @@ module.exports.deleteVacancy = (req, res) => {
     //vacencyid
     vacancies.deleteVacancy(req.body.vacancyid, (error, result) => {
         if (error) throw error;
-        res.send(result);
+        res.json(result);
     });
 };

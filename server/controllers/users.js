@@ -15,7 +15,7 @@ module.exports.addProfile = (req, res) => {
     users.addProfile(first_name, last_name, phone, email, password, year_of_birth, country, bio,
         (err, result) => {
             if (err) throw err;
-            res.send(result);
+            res.json(result);
         });
 };
 
@@ -26,7 +26,7 @@ module.exports.setProfile = (req, res) => { //EDITS USER DETAILS
     users.setProfile(id, first_name, last_name, phone, email, password, year_of_birth, country, bio,
         (err, result) => {
             if (err) throw err;
-            res.send(result);
+            res.json(result);
         });
 };
 
@@ -37,7 +37,7 @@ module.exports.deleteProfile = (req, res) => { //EDITS USER DETAILS
     users.deleteProfile(id, password,
         (err, result) => {
             if (err) throw err;
-            res.send(result);
+            res.json(result);
         });
 };
 
@@ -46,6 +46,6 @@ module.exports.getUserApplications = (req, res) => {
     //userid
     users.getUserApplications(req.query.userid, (err, result) => {
         if (err) throw err;
-        res.send(result);
+        res.json(result);
     });
 };

@@ -21,7 +21,7 @@ module.exports.addBusiness = (bname, phone, email, password, address, city, coun
         query, [bname, phone, email, password, address, city, country, open_days, open_hours, descr],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res.rows[0]);
+            cb(null, res.rows);
         }
     );
 }
@@ -33,7 +33,7 @@ module.exports.setBusiness = (businessid, bname, phone, email, password, address
         query, [bname, phone, email, password, address, city, country, open_days, open_hours, descr, businessid],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rows);
         }
     );
 }
@@ -44,7 +44,7 @@ module.exports.deleteBusiness = (businessid, password, cb) => {
         query, [businessid, password],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rowCount);
         }
     );
 }

@@ -6,7 +6,7 @@ module.exports.addApplication = (userid, vacancyid, message, cb) => {
         query, [userid, vacancyid, message],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rows);
         }
     );
 }

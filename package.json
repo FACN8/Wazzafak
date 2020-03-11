@@ -19,7 +19,6 @@
         "react-scripts": "3.4.0",
         "serve-favicon": "^2.5.0"
     },
-    "proxy": "http://localhost:3000/",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",

@@ -34,7 +34,7 @@ CREATE TABLE busers (
 CREATE TABLE vacancies (
     id SERIAL PRIMARY KEY,
     business_id int NOT NULL,
-    FOREIGN KEY (business_id) references busers (id),
+    FOREIGN KEY (business_id) references busers (id) ON DELETE CASCADE,
     title VARCHAR(40) NOT NULL,
     wage text,
     work_days text,
@@ -45,9 +45,9 @@ CREATE TABLE vacancies (
 CREATE TABLE applications (
     id SERIAL PRIMARY KEY,
     user_id int NOT NULL,
-    FOREIGN KEY (user_id) references users (id),
+    FOREIGN KEY (user_id) references users (id) ON DELETE CASCADE,
     vacancy_id int NOT NULL,
-    FOREIGN KEY (vacancy_id) references vacancies (id),
+    FOREIGN KEY (vacancy_id) references vacancies (id) ON DELETE CASCADE,
     message text
 );
 

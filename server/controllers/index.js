@@ -32,8 +32,8 @@ router.get('/vacancies', vacancies.getVacancies); //test success
 router.get('/bvacancies', vacancies.getBVacancies); //test success
 router.post('/add-vacancy', vacancies.addVacancy); //test success
 router.post('/edit-vacancy', vacancies.setVacancy); //test success
-router.post('/delete-vacancy', vacancies.deleteVacancy); //not yet tested
-router.get('/vacancy-applications', applications.getVacancyApplications); //not yet tested
+router.post('/delete-vacancy', vacancies.deleteVacancy); //tested success
+router.get('/vacancy-applications', applications.getVacancyApplications); //test success
 
 //applications manipulations
 router.get('/applicant', applications.getApplicant); //test success

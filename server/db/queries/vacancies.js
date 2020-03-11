@@ -37,19 +37,12 @@ module.exports.setVacancy = (id, business_id, title, wage, work_days, work_hours
 }
 
 module.exports.deleteVacancy = (vacancyid, cb) => {
-    const helperquery = `DELETE FROM applications WHERE vacancy_id=$1;`;
+    const query = `DELETE FROM vacancies WHERE id=$1;`;
     dbConnection.query(
-        helperquery, [vacancyid],
+        query, [vacancyid],
         (err, res) => {
             if (err) return cb(err);
-            const query = `DELETE FROM vacancies WHERE id=$1;`;
-            dbConnection.query(
-                query, [vacancyid],
-                (err, resa) => {
-                    if (err) return cb(err);
-                    cb(null, res.rowCount + resa.rowCount);
-                }
-            );
+            cb(null, res.rowCount);
         }
     );
 }

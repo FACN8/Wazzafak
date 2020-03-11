@@ -48,7 +48,7 @@ module.exports.addVacancy = (req, res) => {
         req.body.descr,
         (error, result) => {
             if (error) throw error;
-    
+
             res.send(result);
         }
     );
@@ -67,7 +67,7 @@ module.exports.setVacancy = (req, res) => {
         req.body.descr,
         (error, result) => {
             if (error) throw error;
-    
+
             res.send(result);
         }
     );
@@ -78,7 +78,6 @@ module.exports.deleteVacancy = (req, res) => {
     //vacencyid
     vacancies.deleteVacancy(req.body.vacancyid, (error, result) => {
         if (error) throw error;
-
         res.send(result);
     });
 };

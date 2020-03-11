@@ -21,7 +21,7 @@ module.exports.addProfile = (first_name, last_name, phone, email, password, year
         query, [first_name, last_name, phone, email, password, year_of_birth, country, bio],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rows);
         }
     );
 }
@@ -33,7 +33,7 @@ module.exports.setProfile = (userid, first_name, last_name, phone, email, passwo
         query, [first_name, last_name, phone, email, password, year_of_birth, country, bio, userid],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rows);
         }
     );
 }
@@ -44,7 +44,7 @@ module.exports.deleteProfile = (userid, password, cb) => {
         query, [userid, password],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rowCount);
         }
     );
 }

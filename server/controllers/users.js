@@ -15,7 +15,7 @@ module.exports.addProfile = (req, res) => {
     users.addProfile(first_name, last_name, phone, email, password, year_of_birth, country, bio,
         (err, result) => {
             if (err) throw err;
-            res.send(result.rows[0]);
+            res.send(result);
         });
 };
 
@@ -44,7 +44,7 @@ module.exports.deleteProfile = (req, res) => { //EDITS USER DETAILS
 module.exports.getUserApplications = (req, res) => {
     //Get and return all applications of this user INPUT user id
     //userid
-    users.getUserApplications(req.body.userid, (err, result) => {
+    users.getUserApplications(req.query.userid, (err, result) => {
         if (err) throw err;
         res.send(result);
     });

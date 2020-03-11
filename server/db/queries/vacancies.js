@@ -19,7 +19,7 @@ module.exports.addVacancy = (business_id, title, wage, work_days, work_hours, de
         query, [business_id, title, wage, work_days, work_hours, descr],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rows);
         }
     );
 }
@@ -31,7 +31,7 @@ module.exports.setVacancy = (id, business_id, title, wage, work_days, work_hours
         query, [business_id, title, wage, work_days, work_hours, descr, id],
         (err, res) => {
             if (err) return cb(err);
-            cb(null, res);
+            cb(null, res.rows);
         }
     );
 }
@@ -45,9 +45,9 @@ module.exports.deleteVacancy = (vacancyid, cb) => {
             const query = `DELETE FROM vacancies WHERE id=$1;`;
             dbConnection.query(
                 query, [vacancyid],
-                (err, res) => {
+                (err, resa) => {
                     if (err) return cb(err);
-                    cb(null, res);
+                    cb(null, res.rowCount + resa.rowCount);
                 }
             );
         }

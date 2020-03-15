@@ -13,9 +13,15 @@ import Footer from "./components/user/Footer";
 
 
 function App() {
-  let header = true;
-  let footer = true;
-  let buser = false;
+  const [user, setUser] = React.useState(true);
+  const [business, setBusiness] = React.useState(null);
+  const [buser, setBuser] = React.useState(null);
+  const [header, setHeader] = React.useState(true);
+  const [footer, setFooter] = React.useState(true);
+  const [location, setLocation] = React.useState(null);
+  const [vacancies, setVacancies] = React.useState(null);
+
+  
   return (
     <div>
     {(header) ? ((buser) ? <Bheader/>:<Header/>):<div></div>}
@@ -70,57 +76,56 @@ function App() {
             </li>
           </ul>
         </nav>
-
         {/* A <Switch> looks through its children <Route>s and
     renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/" exact>
-            <Intro />
+            <Intro user={user}/>
           </Route>
           <Route path="/applications">
-            <User.Applications />
+            <User.Applications user={user}/>
           </Route>
           <Route path="/area">
-            <User.Area />
+            <User.Area user={user} location={location} setLocation={setLocation}/>
           </Route>
           <Route path="/business">
-            <User.Business />
+            <User.Business user={user} business={business} setBusiness={setBusiness}/>
           </Route>
           <Route path="/login">
-            <User.Login />
+            <User.Login user={user} setUser={setUser}/>
           </Route>
           <Route path="/map">
-            <User.Map />
+            <User.Map user={user}/>
           </Route>
           <Route path="/profile">
-            <User.Profile />
+            <User.Profile user={user} setUser={setUser}/>
           </Route>
           <Route path="/register">
-            <User.Register />
+            <User.Register user={user} setUser={setUser}/>
           </Route>
           <Route path="/vacancies">
-            <User.Vacancies />
+            <User.Vacancies user={user} vacancies={vacancies} setVacancies={setVacancies} />
           </Route>
           <Route path="/vacancy">
-            <User.Vacancy />
+            <User.Vacancy user={user}/>
           </Route>
           <Route path="/applicant">
-            <Buser.Applicant />
+            <Buser.Applicant buser={buser}/>
           </Route>
           <Route path="/applicants">
-            <Buser.Applicants />
+            <Buser.Applicants buser={buser}/>
           </Route>
           <Route path="/blogin">
-            <Buser.Blogin />
+            <Buser.Blogin buser={buser} setBuser={setBuser}/>
           </Route>
           <Route path="/bprofile">
-            <Buser.Bprofile />
+            <Buser.Bprofile buser={buser} setBuser={setBuser}/>
           </Route>
           <Route path="/bregister">
-            <Buser.Bregister />
+            <Buser.Bregister buser={buser} setBuser={setBuser}/>
           </Route>
           <Route path="/bvacancies">
-            <Buser.Bvacancies />
+            <Buser.Bvacancies buser={buser}/>
           </Route>
         </Switch>
       </div>

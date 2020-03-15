@@ -22,4 +22,4 @@ function getMyApplications(userid) {
 // router.post('/edit-profile', users.setProfile); //test success
 // router.post('/delete-profile', users.deleteProfile); //test success
 
-module.exports = { getProfile, getMyApplications  };
+module.exports = { getProfile, getMyApplications };

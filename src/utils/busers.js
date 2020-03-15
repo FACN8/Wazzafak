@@ -1,6 +1,21 @@
+const corswazzafak = "https://cors-anywhere.herokuapp.com/https://wazzafak.herokuapp.com/";
+const getheaders = {
+    headers: {
+        'Content-Type': 'application/json',
+        'origin': 'x-requested-with'
+    }
+};
+const postheaders = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'origin': 'x-requested-with'
+    }
+};
+
 function getBusiness(businessid) {
     return window
-        .fetch(`https://wazzafak.herokuapp.com/business?businessid=${businessid}`)
+        .fetch(`${corswazzafak}business?businessid=${businessid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;

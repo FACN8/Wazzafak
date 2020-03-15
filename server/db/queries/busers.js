@@ -6,7 +6,7 @@ const dbConnection = require('../dbconnection');
    @param cb a callback function
    returns: an array with one object representing a business user profile */
 module.exports.getBusiness = (businessid, cb) => {
-    const query = `SELECT bname,phone,email,address,city,country,open_days,open_hours,descr 
+    const query = `SELECT id,bname,phone,email,address,city,country,open_days,open_hours,descr 
     FROM busers WHERE id=$1;`;
     dbConnection.query(query, [businessid], (err, res) => {
         if (err) return cb(err);

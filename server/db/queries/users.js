@@ -6,7 +6,7 @@ const dbConnection = require('../dbconnection');
    @param cb a callback function
    returns: an array with one object representing a user profile */
 module.exports.getProfile = (userid, cb) => {
-    const query = `SELECT first_name,last_name,phone,email,year_of_birth,country,bio
+    const query = `SELECT id,first_name,last_name,phone,email,year_of_birth,country,bio
      FROM users WHERE id=$1;`;
     dbConnection.query(query, [userid], (err, res) => {
         if (err) return cb(err);

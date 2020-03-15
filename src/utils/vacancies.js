@@ -16,7 +16,7 @@ const postheaders = {
 
 function getVacancy(vacancyid) {
     return window
-        .fetch(corswazzafak + `vacancy?vacancyid=${vacancyid}`, getheaders)
+        .fetch(`${corswazzafak}vacancy?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;
@@ -26,7 +26,7 @@ function getVacancy(vacancyid) {
 
 function getVacancies() {
     return window
-        .fetch(corswazzafak + `vacancies`, getheaders)
+        .fetch(`${corswazzafak}vacancies`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             console.log(res);
@@ -35,9 +35,9 @@ function getVacancies() {
         .then(res => res.json());
 }
 
-function getBvacancies(businessid) {
+function getBVacancies(businessid) {
     return window
-        .fetch(corswazzafak + `bvacancies?businessid=${businessid}`, getheaders)
+        .fetch(`${corswazzafak}bvacancies?businessid=${businessid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;
@@ -47,7 +47,7 @@ function getBvacancies(businessid) {
 
 function getVacancyApplications(vacancyid) {
     return window
-        .fetch(corswazzafak + `vacancy-applications?vacancyid=${vacancyid}`, getheaders)
+        .fetch(`${corswazzafak}vacancy-applications?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;
@@ -82,4 +82,4 @@ function getVacancyApplications(vacancyid) {
 // router.post('/edit-vacancy', vacancies.setVacancy); //test success
 // router.post('/delete-vacancy', vacancies.deleteVacancy); //tested success
 
-module.exports = { getVacancy, getVacancies, getBvacancies, getVacancyApplications };
+module.exports = { getVacancy, getVacancies, getBVacancies, getVacancyApplications };

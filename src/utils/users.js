@@ -25,7 +25,7 @@ function getProfile(userid) {
 
 function getMyApplications(userid) {
     return window
-        .fetch(`https://wazzafak.herokuapp.com/my-applications?userid=${userid}`)
+        .fetch(`${corswazzafak}my-applications?userid=${userid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;

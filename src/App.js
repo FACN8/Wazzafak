@@ -2,7 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Intro from "./components/Intro";
 
-import TempUsers from "./utils/users"
+import TempUsers from "./utils/users";
+import TempBusers from "./utils/busers";
+import Vacancies from "./utils/vacancies";
 
 import User from "./components/user";
 import Buser from "./components/buser/";
@@ -17,6 +19,8 @@ import Footer from "./components/user/Footer";
 function App() {
   const [user, setUser] = React.useState(null);
   const [business, setBusiness] = React.useState(null);
+  const [applicant, setApplicant] = React.useState(null);
+  const [vacancy, setVacancy] = React.useState(null);
   const [buser, setBuser] = React.useState(null);
   const [header, setHeader] = React.useState(true);
   const [footer, setFooter] = React.useState(true);
@@ -24,12 +28,33 @@ function App() {
   const [vacancies, setVacancies] = React.useState(null);
 
   React.useEffect(() => {
+    Vacancies.getVacancies()
+      .then(setVacancies)
+      .catch(console.log);
+
+    //Temporary user data:
     TempUsers.getProfile(1)
       .then(data => {
         setUser(data[0]);
       })
       .catch(console.log);
-  }, []);
+
+    //Temporary buser data:
+    TempBusers.getBusiness(1)
+      .then(data => {
+        setBuser(data[0]);
+      })
+      .catch(console.log);
+
+    //Temporary business:
+    setBusiness(1);
+
+    //Temporary vacancy:
+    setVacancy(3);
+
+    //Temporary applicant:
+    setApplicant(2);
+  }, [])
 
   return (
     <div>
@@ -93,13 +118,13 @@ function App() {
               <Intro user={user} />
             </Route>
             <Route path="/applications">
-              <User.Applications user={user} />
+              <User.Applications user={user} vacancies={vacancies} setBusiness={setBusiness} />
             </Route>
             <Route path="/area">
               <User.Area user={user} location={location} setLocation={setLocation} />
             </Route>
             <Route path="/business">
-              <User.Business user={user} business={business} setBusiness={setBusiness} />
+              <User.Business user={user} business={business} />
             </Route>
             <Route path="/login">
               <User.Login user={user} setUser={setUser} />
@@ -114,13 +139,13 @@ function App() {
               <User.Register user={user} setUser={setUser} />
             </Route>
             <Route path="/vacancies">
-              <User.Vacancies user={user} vacancies={vacancies} setVacancies={setVacancies} />
+              <User.Vacancies user={user} vacancies={vacancies} setVacancies={setVacancies} setBusiness={setBusiness} />
             </Route>
             <Route path="/vacancy">
-              <User.Vacancy user={user} />
+              <User.Vacancy user={user} vacancy={vacancy} />
             </Route>
             <Route path="/applicant">
-              <Buser.Applicant buser={buser} />
+              <Buser.Applicant buser={buser} applicant={applicant} />
             </Route>
             <Route path="/applicants">
               <Buser.Applicants buser={buser} />

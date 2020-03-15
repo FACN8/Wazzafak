@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Open our application: https://wazzafak.netlify.com<br>
+Link to our API: http://wazzafak.herokuapp.com
+
 ## Available Scripts
 
 In the project directory, you can run:

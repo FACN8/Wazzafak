@@ -1,26 +1,16 @@
 import React from "react";
 import Vacancies from "../../utils/vacancies";
 
-
 export default props => {
-    const [loading,setLoading] = React.useState("Loading...");
-    React.useEffect(()=>{
+    React.useEffect(() => {
         Vacancies.getVacancies()
-            .then(res => {props.setVacancies(res)
-                          console.log(res)              
-                        })
+            .then(props.setVacancies)
             .catch(console.log)
-    },[])
-    React.useEffect(()=>{
-    if(props.vacancies)
-        var str = '<ul>'
-        props.vacancies.forEach(function(elem) {
-        str += '<li>'+ elem.title + '</li>';
-        }); 
-        str += '</ul>';
-        setLoading(str);
-    } 
-    ,[props.vacancies])
+    }, [])
 
-return <div>{loading}</div>
+    return <div className="component-container">{props.vacancies ?
+        props.vacancies.map(vacancy => {
+            //display items of each vacancy here
+            return Object.keys(vacancy).map(item => <div>{vacancy[item]}</div>);
+        }) : "Loading..."}</div>
 }

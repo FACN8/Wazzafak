@@ -1,20 +1,22 @@
 const corswazzafak = "https://cors-anywhere.herokuapp.com/https://wazzafak.herokuapp.com/";
 const getheaders = {
-    headers:   {'Content-Type': 'application/json',
-                 'origin': 'x-requested-with'}
- };
+    headers: {
+        'Content-Type': 'application/json',
+        'origin': 'x-requested-with'
+    }
+};
 const postheaders = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'origin': 'x-requested-with'
-          }
-        };
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'origin': 'x-requested-with'
+    }
+};
 
 
 function getVacancy(vacancyid) {
     return window
-        .fetch(corswazzafak+`vacancy?vacancyid=${vacancyid}`,getheaders)
+        .fetch(corswazzafak + `vacancy?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;
@@ -24,7 +26,7 @@ function getVacancy(vacancyid) {
 
 function getVacancies() {
     return window
-        .fetch(corswazzafak+`vacancies`,getheaders)
+        .fetch(corswazzafak + `vacancies`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             console.log(res);
@@ -35,7 +37,7 @@ function getVacancies() {
 
 function getBvacancies(businessid) {
     return window
-        .fetch(corswazzafak+`bvacancies?businessid=${businessid}`,getheaders)
+        .fetch(corswazzafak + `bvacancies?businessid=${businessid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;
@@ -45,7 +47,7 @@ function getBvacancies(businessid) {
 
 function getVacancyApplications(vacancyid) {
     return window
-        .fetch(corswazzafak+`vacancy-applications?vacancyid=${vacancyid}`,getheaders)
+        .fetch(corswazzafak + `vacancy-applications?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
             if (!res.ok) throw new Error("HTTP error");
             return res;
@@ -72,7 +74,7 @@ function getVacancyApplications(vacancyid) {
 //     });
 //     return await response.json(); // parses JSON response into native JavaScript objects
 //   }
-  
+
 //   postData('https://example.com/answer', { answer: 42 })
 //     .then((data) => {
 //       console.log(data); // JSON data parsed by `response.json()` call

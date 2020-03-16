@@ -19,7 +19,7 @@ function getApplicant(applicationid) {
 }
 
 function addApplication(userid, vacancyid, message) {
-    return axios.post(`https://wazzafak.herokuapp.com/add-application`, { userid, vacancyid, message })
+    return axios.post(`${corswazzafak}add-application`, { userid, vacancyid, message })
         .then(res => res)
         .catch(error => error);
 }

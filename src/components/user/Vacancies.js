@@ -16,8 +16,8 @@ export default props => {
                 <div>{vacancy.work_days}</div>
                 <div>{vacancy.work_hours}</div>
                 <div>{vacancy.descr}</div>
-                <input id={vacancy.id + "-message"} type="text" placeholder="Short message for employer" />
-                <button className="unit-button" onClick={() => applications.addApplication(3, 3, 'job please').then(response => alert(response))}>Apply for Position</button>
+                <input id={vacancy.title} type="text" placeholder="Short message for employer" />
+                <button className="unit-button" onClick={() => applications.addApplication(props.user.id, vacancy.id, document.querySelector('#' + vacancy.title).value ? document.querySelector('#' + vacancy.title).value : 'no value, its null but ok').then(response => alert(response))}>Apply for Position</button>
 
             </div>
 

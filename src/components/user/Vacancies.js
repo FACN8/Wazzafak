@@ -1,6 +1,6 @@
 import React from "react";
 import path from "path";
-const applications = require('../../utils/applications.js');
+import applications from "../../utils/applications";
 
 export default props => {
     return <div className="component-container">{props.vacancies ?

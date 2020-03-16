@@ -1,3 +1,4 @@
+const axios = require('axios');
 const corswazzafak = "https://cors-anywhere.herokuapp.com/https://wazzafak.herokuapp.com/";
 const getheaders = {
     headers: {
@@ -40,7 +41,6 @@ const postheaders = {
 //         console.log(data); // JSON data parsed by `response.json()` call
 //     });
 
-import axios from "axios";
 
 function getApplicant(applicationid) {
     return window
@@ -53,7 +53,7 @@ function getApplicant(applicationid) {
 }
 
 function addApplication(userid, vacancyid, message) {
-    return axios.post(`https://wazzafak.herokuapp.com/add-application`, { userid, vacancyid, message })
+    return axios.post(`${corswazzafak}add-application`, { userid, vacancyid, message })
         .then(res => res)
         .catch(error => error);
 }

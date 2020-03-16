@@ -67,7 +67,7 @@ function deleteVacancy(vacancyid) {
         .catch(error => error);
 }
 
-module.exports = {
+export default {
     getVacancy,
     getVacancies,
     getBVacancies,

@@ -46,7 +46,7 @@ function deleteProfile(id, password) {
         .catch(error => error);
 }
 
-module.exports = {
+export default {
     getProfile,
     getMyApplications,
     addProfile,

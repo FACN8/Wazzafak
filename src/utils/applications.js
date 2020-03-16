@@ -30,4 +30,9 @@ function deleteApplication(applicationid) {
         .catch(error => error);
 }
 
-module.exports = { getApplicant, addApplication, deleteApplication };
+
+export default {
+    getApplicant,
+    addApplication,
+    deleteApplication
+};

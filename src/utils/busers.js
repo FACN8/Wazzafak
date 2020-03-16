@@ -46,4 +46,4 @@ function deleteBusiness(id, password) {
         .catch(error => error);
 }
 
-module.exports = { getBusiness, getApplicants, addBusiness, setBusiness, deleteBusiness };
+export default { getBusiness, getApplicants, addBusiness, setBusiness, deleteBusiness };

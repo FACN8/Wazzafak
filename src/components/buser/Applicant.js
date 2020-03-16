@@ -7,7 +7,9 @@ export default props => {
     React.useEffect(() => {
         if (props.applicant)
             User.getProfile(props.applicant)
-                .then(setApplicant)
+                .then(data => {
+                    setApplicant(data[0]);
+                })
                 .catch(console.log);
     }, []);
 

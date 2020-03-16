@@ -9,13 +9,13 @@ export default props => {
 
             return <div className="list-item">
 
-                <img className="business-image" src={url} />
-                <div>{vacancy.id}</div>
-                <div>{vacancy.title}</div>
-                <div>{vacancy.wage}</div>
-                <div>{vacancy.work_days}</div>
-                <div>{vacancy.work_hours}</div>
-                <div>{vacancy.descr}</div>
+                <img className="business-image" alt="Business Profile" src={url} />
+                <div className="id">{vacancy.id}</div>
+                <div className="title">{vacancy.title}</div>
+                <div className="wage">{vacancy.wage}</div>
+                <div className="work_days">{vacancy.work_days}</div>
+                <div className="work_hours">{vacancy.work_hours}</div>
+                <div className="descr">{vacancy.descr}</div>
                 <input id={vacancy.title} type="text" placeholder="Short message for employer" />
                 <button className="unit-button" onClick={() => applications.addApplication(props.user.id, vacancy.id, document.querySelector('#' + vacancy.title).value ? document.querySelector('#' + vacancy.title).value : 'no value, its null but ok').then(response => alert(response))}>Apply for Position</button>
 

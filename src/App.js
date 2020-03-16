@@ -49,13 +49,26 @@ function App() {
       .catch(console.log);
 
     //Temporary business:
-    setBusiness(1);
+    TempBusers.getBusiness(1)
+      .then(data => {
+        setBusiness(data[0]);
+      })
+      .catch(console.log);
 
     //Temporary vacancy:
-    setVacancy(3);
+    Vacancies.getVacancy(3)
+      .then(data => {
+        setVacancy(data[0]);
+      })
+      .catch(console.log);
 
     //Temporary applicant:
-    setApplicant(2);
+    TempUsers.getProfile(2)
+      .then(data => {
+        setApplicant(data[0]);
+      })
+      .catch(console.log);
+
   }, [])
 
   return (
@@ -66,30 +79,30 @@ function App() {
         <div>
           <nav>
             <ul style={{ "display": "flex", "flexDirection": "row", "flexWrap": "wrap", "justifyContent": "space-around", "listStyle": "none" }}>
-              <li key="Intro">
+              {/* <li key="Intro">
                 <Link to="/">Intro</Link>
-              </li>
+              </li> */}
               <li key="Applications">
                 <Link to="/applications">applications</Link>
               </li>
-              <li key="Area">
+              {/* <li key="Area">
                 <Link to="/area">area</Link>
-              </li>
+              </li> */}
               <li key="Business">
                 <Link to="/business">business</Link>
               </li>
-              <li key="Login">
+              {/* <li key="Login">
                 <Link to="/login">login</Link>
-              </li>
-              <li key="Map">
+              </li> */}
+              {/* <li key="Map">
                 <Link to="/map">map</Link>
-              </li>
+              </li> */}
               <li key="Profile">
                 <Link to="/profile">profile</Link>
               </li>
-              <li key="Register">
+              {/* <li key="Register">
                 <Link to="/register">register</Link>
-              </li>
+              </li> */}
               <li key="Vacancies">
                 <Link to="/vacancies">vacancies</Link>
               </li>
@@ -99,18 +112,18 @@ function App() {
               <li key="Applicant">
                 <Link to="/applicant">applicant</Link>
               </li>
-              <li key="Applicants">
+              {/* <li key="Applicants">
                 <Link to="/applicants">applicants</Link>
-              </li>
-              <li key="Blogin">
+              </li> */}
+              {/* <li key="Blogin">
                 <Link to="/blogin">blogin</Link>
-              </li>
+              </li> */}
               <li key="Bprofile">
                 <Link to="/bprofile">bprofile</Link>
               </li>
-              <li key="Bregister">
+              {/* <li key="Bregister">
                 <Link to="/bregister">bregister</Link>
-              </li>
+              </li> */}
               <li key="Bvacancies">
                 <Link to="/bvacancies">bvacancies</Link>
               </li>

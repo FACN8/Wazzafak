@@ -25,14 +25,14 @@ export default props => {
 
             return <div className="list-item">
 
-                <img className="business-image" src={url} />
-                <div>{app.id}</div>
-                <div>{app.title}</div>
-                <div>{app.wage}</div>
-                <div>{app.work_days}</div>
-                <div>{app.work_hours}</div>
-                <div>{app.descr}</div>
-                <div>{app.message}</div>
+                <img className="business-image" alt="Business Profile" src={url} />
+                <div className="id">{app.id}</div>
+                <div className="title">{app.title}</div>
+                <div className="wage">{app.wage}</div>
+                <div className="work_days">{app.work_days}</div>
+                <div className="work_hours">{app.work_hours}</div>
+                <div className="descr">{app.descr}</div>
+                <div className="message">{app.message}</div>
 
             </div>
 

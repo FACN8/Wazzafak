@@ -2,3 +2,24 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+.business-image {
+  width: 5rem;
+  height: 5rem;
+}
+
+.component-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  padding: 1rem;
+  width: 90vw;
+}

@@ -23,8 +23,18 @@ function getBusiness(businessid) {
         .then(res => res.json());
 }
 
+function getApplicants(vacancyid) {
+    return window
+        .fetch(`${corswazzafak}applicants?vacancyid=${vacancyid}`, getheaders)
+        .then(res => {
+            if (!res.ok) throw new Error("HTTP error");
+            return res;
+        })
+        .then(res => res.json());
+}
+
 // router.post('/add-business', busers.addBusiness); //test success
 // router.post('/edit-business', busers.setBusiness); //test success
 // router.post('/delete-business', busers.deleteBusiness); //test success
 
-module.exports = { getBusiness };
+module.exports = { getBusiness, getApplicants };

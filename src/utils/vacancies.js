@@ -82,4 +82,9 @@ function getVacancyApplications(vacancyid) {
 // router.post('/edit-vacancy', vacancies.setVacancy); //test success
 // router.post('/delete-vacancy', vacancies.deleteVacancy); //tested success
 
-module.exports = { getVacancy, getVacancies, getBVacancies, getVacancyApplications };
+module.exports = {
+    getVacancy,
+    getVacancies,
+    getBVacancies,
+    getVacancyApplications
+};

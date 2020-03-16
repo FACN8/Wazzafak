@@ -18,14 +18,16 @@ import Footer from "./components/user/Footer";
 
 function App() {
   const [user, setUser] = React.useState(null);
-  const [business, setBusiness] = React.useState(null);
   const [applicant, setApplicant] = React.useState(null);
-  const [vacancy, setVacancy] = React.useState(null);
-  const [buser, setBuser] = React.useState(null);
   const [header, setHeader] = React.useState(true);
   const [footer, setFooter] = React.useState(true);
-  const [location, setLocation] = React.useState(null);
+
+  const [vacancy, setVacancy] = React.useState(null);
   const [vacancies, setVacancies] = React.useState(null);
+
+  const [business, setBusiness] = React.useState(null);
+  const [buser, setBuser] = React.useState(null);
+  const [location, setLocation] = React.useState(null);
 
   React.useEffect(() => {
     Vacancies.getVacancies()
@@ -57,13 +59,13 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div className="main-container">
       {user ? user.email : "No user"} {/*THIS LINE IS TEMPORARY*/}
       {(header) ? ((buser) ? <Bheader /> : <Header />) : <div></div>}
       <Router>
         <div>
           <nav>
-            <ul style={{ "display": "flex", "flexDirection": "row", "justifyContent": "space-around", "listStyle": "none" }}>
+            <ul style={{ "display": "flex", "flexDirection": "row", "flexWrap": "wrap", "justifyContent": "space-around", "listStyle": "none" }}>
               <li key="Intro">
                 <Link to="/">Intro</Link>
               </li>
@@ -96,6 +98,9 @@ function App() {
               </li>
               <li key="Applicant">
                 <Link to="/applicant">applicant</Link>
+              </li>
+              <li key="Applicants">
+                <Link to="/applicants">applicants</Link>
               </li>
               <li key="Blogin">
                 <Link to="/blogin">blogin</Link>
@@ -148,7 +153,7 @@ function App() {
               <Buser.Applicant buser={buser} applicant={applicant} />
             </Route>
             <Route path="/applicants">
-              <Buser.Applicants buser={buser} />
+              <Buser.Applicants buser={buser} vacancy={vacancy} />
             </Route>
             <Route path="/blogin">
               <Buser.Blogin buser={buser} setBuser={setBuser} />

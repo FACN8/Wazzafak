@@ -1,83 +1,54 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Intro from "./components/Intro";
+import Cookies from 'universal-cookie';
 
-import TempUsers from "./utils/users";
-import TempBusers from "./utils/busers";
-import Vacancies from "./utils/vacancies";
-
-import User from "./components/user";
-import Buser from "./components/buser/";
+import usersUtil from "./utils/users";
+import busersUtil from "./utils/busers";
+import vacanciesUtil from "./utils/vacancies";
 
 import "./App.css";
+import User from "./components/user";
+import Buser from "./components/buser/";
+import Intro from "./components/Intro";
 import Bheader from "./components/buser/Bheader";
 import Header from "./components/user/Header";
 import Bfooter from "./components/buser/Bfooter";
 import Footer from "./components/user/Footer";
 
+const cookies = new Cookies();
 
 function App() {
   const [user, setUser] = React.useState(null);
-  const [applicant, setApplicant] = React.useState(null);
   const [header, setHeader] = React.useState(true);
   const [footer, setFooter] = React.useState(true);
-
-  const [vacancy, setVacancy] = React.useState(null);
   const [vacancies, setVacancies] = React.useState(null);
 
-  const [business, setBusiness] = React.useState(null);
   const [buser, setBuser] = React.useState(null);
-  const [location, setLocation] = React.useState(null);
+
+  //////to be removed
+  const [business, setBusiness] = React.useState(null);
+  const [applicant, setApplicant] = React.useState(null);
+  //////to be removed
 
   React.useEffect(() => {
-    Vacancies.getVacancies()
+    if (cookies.get('user')) {
+      usersUtil.getProfile(parseInt(cookies.get('user')))
+        .then(data => setUser(data[0]))
+        .catch(console.log)
+    }
+
+    vacanciesUtil.getVacancies()
       .then(setVacancies)
       .catch(console.log);
-
-    //Temporary user data:
-    TempUsers.getProfile(1)
-      .then(data => {
-        setUser(data[0]);
-      })
-      .catch(console.log);
-
-    //Temporary buser data:
-    TempBusers.getBusiness(1)
-      .then(data => {
-        setBuser(data[0]);
-      })
-      .catch(console.log);
-
-    //Temporary business:
-    TempBusers.getBusiness(1)
-      .then(data => {
-        setBusiness(data[0]);
-      })
-      .catch(console.log);
-
-    //Temporary vacancy:
-    Vacancies.getVacancy(3)
-      .then(data => {
-        setVacancy(data[0]);
-      })
-      .catch(console.log);
-
-    //Temporary applicant:
-    TempUsers.getProfile(2)
-      .then(data => {
-        setApplicant(data[0]);
-      })
-      .catch(console.log);
-
   }, [])
 
   return (
     <div className="main-container">
-      {user ? user.email : "No user"} {/*THIS LINE IS TEMPORARY*/}
-      {(header) ? ((buser) ? <Bheader /> : <Header />) : <div></div>}
+      {(header) ? ((buser) ? <Bheader buser={buser} /> : <Header user={user} />) : <div></div>}
       <Router>
         <div>
-          <nav>
+
+          <nav style={{ "display": "none" }}>
             <ul style={{ "display": "flex", "flexDirection": "row", "flexWrap": "wrap", "justifyContent": "space-around", "listStyle": "none" }}>
               {/* <li key="Intro">
                 <Link to="/">Intro</Link>
@@ -129,6 +100,7 @@ function App() {
               </li>
             </ul>
           </nav>
+
           {/* A <Switch> looks through its children <Route>s and
     renders the first one that matches the current URL. */}
           <Switch>
@@ -139,10 +111,13 @@ function App() {
               <User.Applications user={user} vacancies={vacancies} setBusiness={setBusiness} />
             </Route>
             <Route path="/area">
-              <User.Area user={user} location={location} setLocation={setLocation} />
+              <User.Area user={user} />
             </Route>
-            <Route path="/business">
-              <User.Business user={user} business={business} />
+
+            <Route path="/business" component={props =>
+              <User.Business {...props} user={user} />
+            }>
+
             </Route>
             <Route path="/login">
               <User.Login user={user} setUser={setUser} />
@@ -159,14 +134,17 @@ function App() {
             <Route path="/vacancies">
               <User.Vacancies user={user} vacancies={vacancies} setVacancies={setVacancies} setBusiness={setBusiness} />
             </Route>
-            <Route path="/vacancy">
-              <User.Vacancy user={user} vacancy={vacancy} />
+
+            <Route path="/vacancy" component={props =>
+              <User.Vacancy {...props} user={user} />
+            }>
+
             </Route>
             <Route path="/applicant">
               <Buser.Applicant buser={buser} applicant={applicant} />
             </Route>
             <Route path="/applicants">
-              <Buser.Applicants buser={buser} vacancy={vacancy} />
+              <Buser.Applicants buser={buser} />
             </Route>
             <Route path="/blogin">
               <Buser.Blogin buser={buser} setBuser={setBuser} />

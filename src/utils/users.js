@@ -1,12 +1,7 @@
+import axios from "axios";
+
 const corswazzafak = "https://cors-anywhere.herokuapp.com/https://wazzafak.herokuapp.com/";
 const getheaders = {
-    headers: {
-        'Content-Type': 'application/json',
-        'origin': 'x-requested-with'
-    }
-};
-const postheaders = {
-    method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         'origin': 'x-requested-with'
@@ -33,8 +28,28 @@ function getMyApplications(userid) {
         .then(res => res.json());
 }
 
-// router.post('/add-profile', users.addProfile); //test success
-// router.post('/edit-profile', users.setProfile); //test success
-// router.post('/delete-profile', users.deleteProfile); //test success
+function addProfile(first_name, last_name, phone, email, password, year_of_birth, country, bio) {
+    return axios.post(`https://wazzafak.herokuapp.com/add-profile`, { first_name, last_name, phone, email, password, year_of_birth, country, bio })
+        .then(res => res)
+        .catch(error => error);
+}
 
-module.exports = { getProfile, getMyApplications };
+function setProfile(id, first_name, last_name, phone, email, password, year_of_birth, country, bio) {
+    return axios.post(`https://wazzafak.herokuapp.com/edit-profile`, { id, first_name, last_name, phone, email, password, year_of_birth, country, bio })
+        .then(res => res)
+        .catch(error => error);
+}
+
+function deleteProfile(id, password) {
+    return axios.post(`https://wazzafak.herokuapp.com/delete-profile`, { id, password })
+        .then(res => res)
+        .catch(error => error);
+}
+
+export default {
+    getProfile,
+    getMyApplications,
+    addProfile,
+    setProfile,
+    deleteProfile
+};

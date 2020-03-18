@@ -1,12 +1,7 @@
+import axios from "axios";
+
 const corswazzafak = "https://cors-anywhere.herokuapp.com/https://wazzafak.herokuapp.com/";
 const getheaders = {
-    headers: {
-        'Content-Type': 'application/json',
-        'origin': 'x-requested-with'
-    }
-};
-const postheaders = {
-    method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         'origin': 'x-requested-with'
@@ -23,7 +18,21 @@ function getApplicant(applicationid) {
         .then(res => res.json());
 }
 
-// router.post('/add-application', applications.addApplication); //test success
-// router.post('/delete-application', applications.deleteApplication); //test success
+function addApplication(userid, vacancyid, message) {
+    return axios.post(`${corswazzafak}add-application`, { userid, vacancyid, message })
+        .then(res => res)
+        .catch(error => error);
+}
 
-module.exports = { getApplicant };
+function deleteApplication(applicationid) {
+    return axios.post(`https://wazzafak.herokuapp.com/delete-application`, { applicationid })
+        .then(res => res)
+        .catch(error => error);
+}
+
+
+export default {
+    getApplicant,
+    addApplication,
+    deleteApplication
+};

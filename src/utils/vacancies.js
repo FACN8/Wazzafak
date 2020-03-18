@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const corswazzafak = "https://cors-anywhere.herokuapp.com/https://wazzafak.herokuapp.com/";
 const getheaders = {
     headers: {
@@ -5,14 +7,6 @@ const getheaders = {
         'origin': 'x-requested-with'
     }
 };
-const postheaders = {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'origin': 'x-requested-with'
-    }
-};
-
 
 function getVacancy(vacancyid) {
     return window
@@ -55,7 +49,33 @@ function getVacancyApplications(vacancyid) {
         .then(res => res.json());
 }
 
-// router.post('/add-vacancy', vacancies.addVacancy); //test success
+function addVacancy(business_id, title, wage, work_days, work_hours, descr) {
+    return axios.post(`https://wazzafak.herokuapp.com/add-vacancy`, { business_id, title, wage, work_days, work_hours, descr })
+        .then(res => res)
+        .catch(error => error);
+}
+
+function setVacancy(id, business_id, title, wage, work_days, work_hours, descr) {
+    return axios.post(`https://wazzafak.herokuapp.com/edit-vacancy`, { id, business_id, title, wage, work_days, work_hours, descr })
+        .then(res => res)
+        .catch(error => error);
+}
+
+function deleteVacancy(vacancyid) {
+    return axios.post(`https://wazzafak.herokuapp.com/delete-vacancy`, { vacancyid })
+        .then(res => res)
+        .catch(error => error);
+}
+
+export default {
+    getVacancy,
+    getVacancies,
+    getBVacancies,
+    getVacancyApplications,
+    addVacancy,
+    setVacancy,
+    deleteVacancy
+};
 
 // async function postData(url = '', data = {}) {
 //     // Default options are marked with *
@@ -79,7 +99,3 @@ function getVacancyApplications(vacancyid) {
 //     .then((data) => {
 //       console.log(data); // JSON data parsed by `response.json()` call
 //     });
-// router.post('/edit-vacancy', vacancies.setVacancy); //test success
-// router.post('/delete-vacancy', vacancies.deleteVacancy); //tested success
-
-module.exports = { getVacancy, getVacancies, getBVacancies, getVacancyApplications };

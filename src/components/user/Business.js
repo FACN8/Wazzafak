@@ -41,6 +41,6 @@ export default props => {
                     </a>
                 })}
             </div>
-        ) : ("loading...")}
+        ) : ("Loading...")}
     </div>;
 }

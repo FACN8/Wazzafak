@@ -1,25 +1,9 @@
 import React from "react";
-import Users from "../../utils/users";
 import path from "path";
 
 export default props => {
-    const [appData, setAppData] = React.useState(null);
-
-    React.useEffect(() => {
-        if (props.user && props.vacancies)
-            Users.getMyApplications(props.user.id)
-                .then(data => {
-                    setAppData(data.map(application => {
-                        let obj = props.vacancies.filter(vacancy => (application.vacancy_id === vacancy.id))[0];
-                        obj.message = application.message;
-                        return obj;
-                    }));
-                })
-                .catch(console.log)
-    }, [props.user, props.vacancies]);
-
-    return <div className="component-container">{appData ?
-        appData.map(app => {
+    return <div className="component-container">{props.applications ?
+        props.applications.map(app => {
 
             let url = path.join(__dirname, 'res', 'buser', app.business_id + '.png');
 

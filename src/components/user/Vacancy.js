@@ -12,7 +12,7 @@ export default props => {
             vacanciesUtil.getVacancy(props.location.search.split('=')[1]).then(data => {
                 setVacancy(data[0]);
             }).catch(console.log);
-    }, []);
+    }, [props.applications]);
 
     return <div className="component-container"> {vacancy ? (
         <div className="unit-item">
@@ -24,9 +24,15 @@ export default props => {
             <div className="entry-item work-days"><b>Work Days:</b> {vacancy.work_days}</div>
             <div className="entry-item work-hours"><b>Work Hours:</b> {vacancy.work_hours}</div>
             <div className="entry-item descr"><b>Vacancy Description:</b> {vacancy.descr}</div>
-            <input id={vacancy.title + vacancy.id} type="text" placeholder="Short message for employer" />
-            <button className="unit-button" onClick={() => applicationsUtil.addApplication(props.user.id, vacancy.id, document.querySelector('#' + vacancy.title + vacancy.id).value ? document.querySelector('#' + vacancy.title + vacancy.id).value : 'no value, its null but ok').then(response => alert(response))}>Apply for Position</button>
+            {
+                props.applications ?
+                    props.applications.map(element => element.id).includes(vacancy.id) ? "You have applied for this position!" :
+                        (<div>
+                            <input className="unit-input" id={vacancy.title + vacancy.id} type="text" placeholder="Short message for employer" />
+                            <button className="unit-button" onClick={() => applicationsUtil.addApplication(props.user.id, vacancy.id, document.querySelector('#' + vacancy.title + vacancy.id).value ? document.querySelector('#' + vacancy.title + vacancy.id).value : 'no value, its null but ok').then(response => alert(response))}>Apply for Position</button>
+                        </div>) : ""
+            }
         </div>
-    ) : ("loading...")}
+    ) : ("Loading...")}
     </div >;
 }

@@ -1,27 +1,18 @@
 import React from "react";
 import path from "path";
 
-// import Bprofile from "../../utils/busers";
-
 export default props => {
-    // const [bProfileData, setBProfileData] = React.useState(null);
-
-    // React.useEffect(() => {
-    //     if (props.buser)
-    //         Bprofile.getBusiness(1/*props.buser.id*/).then(data => {
-    //             setBProfileData(data[0]);
-    //         }).catch(console.log);
-    // }, []);
-
-    // return <div className="component-container">
-    //     {bProfileData ? (
-    //         Object.keys(bProfileData).map(key => <div>{bProfileData[key]}</div>)
-    //     ) : "Loading..."}
-    // </div>;
     return <div className="component-container"> {props.buser ?
-        Object.keys(props.buser).map(item => 
-            (item==="id") ?
-            <img className="business-image" alt="Business Profile" src={path.join(__dirname, 'res', 'buser', props.buser.id + '.png')} />
-            : <div className={item}>{props.buser[item]}</div>) 
-        :("loading...")} </div>;
+        <div className="unit-item">
+            <img className="entry-item business-image" alt="Business Profile" src={path.join(__dirname, 'res', 'buser', props.buser.id + '.png')} />
+            <div className="entry-item bname"><b>Business Name:</b> {props.buser.bname}</div>
+            <div className="entry-item phone"><b>Phone Number:</b> {props.buser.phone}</div>
+            <div className="entry-item email"><b>E-mail:</b> {props.buser.email}</div>
+            <div className="entry-item address"><b>Business Address:</b> {props.buser.address}</div>
+            <div className="entry-item city"><b>City:</b> {props.buser.city}</div>
+            <div className="entry-item open-days"><b>Opening Days:</b> {props.buser.open_days}</div>
+            <div className="entry-item open-hours"><b>Opening Hours:</b> {props.buser.open_hours}</div>
+            <div className="entry-item descr"><b>Description:</b> {props.buser.descr}</div>
+        </div> : ("Loading...")}
+    </div>;
 }

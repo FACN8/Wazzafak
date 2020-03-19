@@ -41,6 +41,12 @@ export default props => {
                     </a>
                 })}
             </div>
-        ) : ("Loading...")}
+        )
+            :
+            <img
+                style={{ "marginTop": "200px", "display": "flex", "justifyContent": "center", "alignItems": "center" }}
+                src={path.join(__dirname, "res", "loading3.gif")}
+                alt="Loading..."
+            />}
     </div>;
 }

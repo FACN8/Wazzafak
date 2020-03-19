@@ -13,6 +13,12 @@ export default props => {
             <div className="entry-item open-days"><b>Opening Days:</b> {props.buser.open_days}</div>
             <div className="entry-item open-hours"><b>Opening Hours:</b> {props.buser.open_hours}</div>
             <div className="entry-item descr"><b>Description:</b> {props.buser.descr}</div>
-        </div> : ("Loading...")}
+        </div>
+        :
+        <img
+            style={{ "marginTop": "200px", "display": "flex", "justifyContent": "center", "alignItems": "center" }}
+            src={path.join(__dirname, "res", "loading3.gif")}
+            alt="Loading..."
+        />}
     </div>;
 }

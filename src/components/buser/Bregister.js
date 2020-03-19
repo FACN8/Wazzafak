@@ -26,7 +26,7 @@ export default props => {
                         <input id="open-hours" className="unit-input" type="text" placeholder="Enter opening hours" />
                         <textarea id="descr" className="unit-input" name="descr" cols="22" rows="5" placeholder="Business description (5-10 lines)" />
 
-                        <input className="unit-button" type="submit" value="Register" />
+                        <input className="unit-button action-button" type="submit" value="Register" />
                     </form>
                 </div>
             </div>

@@ -30,8 +30,18 @@ function deleteApplication(applicationid) {
         .catch(error => error);
 }
 
+function getVacancyApplications(vacancyid) {
+    return window
+        .fetch(`${corswazzafak}vacancy-applications?vacancyid=${vacancyid}`, getheaders)
+        .then(res => {
+            if (!res.ok) throw new Error("HTTP error");
+            return res;
+        })
+        .then(res => res.json());
+}
 
 export default {
+    getVacancyApplications,
     getApplicant,
     addApplication,
     deleteApplication

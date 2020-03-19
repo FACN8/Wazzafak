@@ -23,7 +23,7 @@ export default props => {
                         <input id="birth-year" className="unit-input" type="text" placeholder="Enter year of birth" />
                         <input id="country" className="unit-input" type="text" placeholder="Enter country" />
                         <textarea id="bio" className="unit-input" name="bio" cols="22" rows="5" placeholder="Enter biography (5-10 lines)" />
-                        <input className="unit-button" type="submit" value="Register" />
+                        <input className="unit-button action-button" type="submit" value="Register" />
                     </form>
                 </div>
             </div>

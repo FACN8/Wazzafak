@@ -25,7 +25,7 @@ export default props => {
                     }}>
                         <input id="email" className="unit-input" type="text" placeholder="Enter your e-mail" />
                         <input id="password" className="unit-input" type="password" placeholder="Enter your password" />
-                        <input className="unit-button" type="submit" value="Login" />
+                        <input className="unit-button action-button" type="submit" value="Login" />
                     </form>
                 </div>
             </div>

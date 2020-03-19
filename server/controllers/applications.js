@@ -40,21 +40,9 @@ module.exports.getVacancyApplications = (req, res) => {
     });
 };
 
-// module.exports.getVacancyApplicants = (req, res) => {
-//     applications.getVacancyApplications(req.query.vacancyid, (err, result) => {
-//         if (err) throw err;
-//         let response = [];
-//         result.forEach(application => {
-//             applications.getApplicant(application.user_id, (error, result1) => {
-//                 if (error) throw error;
-//                 result1[0].message = application.message;
-//                 response.push(result1[0]);
-//                 console.log(response.length);
-//                 console.log(result.length);
-
-//             });
-//             if (response.length===result.length)
-//                 res.json(response)
-//         });
-//     });
-// }
+module.exports.getVacancyApplicants = (req, res) => {
+    applications.getVacancyApplications(req.query.vacancyid, (err, result) => {
+        if (err) throw err;
+        res.json(result);
+    });
+}

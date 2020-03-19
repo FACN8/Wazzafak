@@ -47,12 +47,6 @@ export default props => {
                   <span>My Vacancies</span>
                 </a>
               </li>
-              <li key="applicants">
-                <a className="nav-item" style={{ "color": "white" }} href="/applicants">
-                  <img className="nav-icon" src={path.join(__dirname, "res", "icon", "applicants.png")} alt="Applicants Icon" />
-                  <span>Applicants</span>
-                </a>
-              </li>
             </ul>
           ) : "")
     }

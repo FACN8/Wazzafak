@@ -28,11 +28,17 @@ export default props => {
                 props.applications ?
                     props.applications.map(element => element.id).includes(vacancy.id) ? "You have applied for this position!" :
                         (<div>
-                            <input className="unit-input" id={vacancy.title + vacancy.id} type="text" placeholder="Short message for employer" />
+                            <input className="unit-input" id={vacancy.title + vacancy.id} type="text" placeholder="Short message" />
                             <button className="unit-button" onClick={() => applicationsUtil.addApplication(props.user.id, vacancy.id, document.querySelector('#' + vacancy.title + vacancy.id).value ? document.querySelector('#' + vacancy.title + vacancy.id).value : 'no value, its null but ok').then(response => alert(response))}>Apply for Position</button>
                         </div>) : ""
             }
         </div>
-    ) : ("Loading...")}
+    )
+        :
+        <img
+            style={{ "marginTop": "200px", "display": "flex", "justifyContent": "center", "alignItems": "center" }}
+            src={path.join(__dirname, "res", "loading3.gif")}
+            alt="Loading..."
+        />}
     </div >;
 }

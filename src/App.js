@@ -24,8 +24,8 @@ function App() {
 
   React.useEffect(() => {
     (async () => {
-      if (cookies.get('user')) {
-        try {
+      try {
+        if (cookies.get('user')) {
           const user = await usersUtil.getProfile(parseInt(cookies.get('user')));
           const vacancies = await vacanciesUtil.getVacancies();
           const applications = await usersUtil.getMyApplications(user[0].id);
@@ -37,18 +37,15 @@ function App() {
             obj.message = application.message;
             return obj;
           }));
-        } catch (x) {
-          console.log(x);
+        } else if (cookies.get('buser')) {
+          const buser = await busersUtil.getBusiness(parseInt(cookies.get('buser')));
+          const bvacancies = await vacanciesUtil.getBVacancies(buser[0].id);
+
+          setBuser(buser[0]);
+          setVacancies(bvacancies);
         }
-      }
-
-      if (cookies.get('buser')) {
-        busersUtil.getBusiness(parseInt(cookies.get('buser')))
-          .then(data => setBuser(data[0]))
-          .catch(console.log)
-
-        //load b vacancies
-        //load b applicants
+      } catch (x) {
+        console.log(x);
       }
     })();
   }, []);
@@ -84,12 +81,9 @@ function App() {
             <User.Vacancy {...props} user={user} applications={applications} />
           }>
           </Route>
-          <Route path="/applicant">
-            <Buser.Applicant buser={buser} />
-          </Route>
-          <Route path="/applicants">
-            <Buser.Applicants buser={buser} />
-          </Route>
+          <Route path="/applicant" component={props =>
+            <Buser.Applicant {...props} buser={buser} />
+          }></Route>
           <Route path="/blogin">
             <Buser.Blogin buser={buser} setBuser={setBuser} />
           </Route>
@@ -100,7 +94,11 @@ function App() {
             <Buser.Bregister buser={buser} setBuser={setBuser} />
           </Route>
           <Route path="/bvacancies">
-            <Buser.Bvacancies buser={buser} />
+            <Buser.Bvacancies buser={buser} vacancies={vacancies} />
+          </Route>
+          <Route path="/bvacancy" component={props =>
+            <Buser.Bvacancy {...props} buser={buser} />
+          }>
           </Route>
         </Switch>
       </Router>

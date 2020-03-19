@@ -14,5 +14,12 @@ export default props => {
                     <div className="entry-item descr"><b>Vacancy Description:</b> {vacancy.descr}</div>
                 </div>
             </a>
-        }) : "Loading..."}</div >
+        })
+        :
+        <img
+            style={{ "marginTop": "200px", "display": "flex", "justifyContent": "center", "alignItems": "center" }}
+            src={path.join(__dirname, "res", "loading3.gif")}
+            alt="Loading..."
+        />}
+    </div >
 }

@@ -16,5 +16,12 @@ export default props => {
                 <div className="entry-item descr"><b>Job Description:</b> {app.descr}</div>
                 <div className="entry-item message"><b>Application Message:</b> {app.message}</div>
             </a>
-        }) : "Loading..."}</div>
+        })
+        :
+        <img
+            style={{ "marginTop": "200px", "display": "flex", "justifyContent": "center", "alignItems": "center" }}
+            src={path.join(__dirname, "res", "loading3.gif")}
+            alt="Loading..."
+        />}
+    </div>
 }

@@ -11,7 +11,7 @@ export default props => {
                 <img className="user-icon" src={props.user ? path.join(__dirname, "res", "user", props.user.id + ".png") : path.join(__dirname, "res", "buser", props.buser.id + ".png")} alt="User Icon" />
                 Welcome back,&nbsp;&nbsp;<a style={{ "color": "white" }} href={props.user ? "/profile" : "/bprofile"}>{props.user ? props.user.first_name : props.buser.bname}</a>!
             </p>
-            <a href="/" style={{ "color": "white" }} onClick={event => {
+            <a href="/" className="action-button" onClick={event => {
                 cookies.remove('user');
                 cookies.remove('buser');
                 window.location.href = "/";

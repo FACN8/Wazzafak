@@ -199,10 +199,6 @@ body {
   box-shadow: 5px 5px 10px 3px #979797;
 }
 
-/* Intro page title <h1> */
-.page-title {
-}
-
 /* Intro page description (<p>) */
 .page-description {
   font-size: larger;

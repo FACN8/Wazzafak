@@ -25,7 +25,7 @@ export default props => {
 
     React.useEffect(() => {
         if (applications)
-            applications.map(app => {
+            applications.forEach(app => {
                 applicationsUtil.getApplicant(app.user_id)
                     .then(data => {
 
@@ -52,7 +52,7 @@ export default props => {
                 applicants ?
                     applicants.map(applicant =>
                         <a href={"/applicant?applicantid=" + applicant.id} className="clickable-item applicant-list-item">
-                            <img className="entry-item nav-icon" alt="Profile Image" src={path.join(__dirname, 'res', 'user', applicant.id + '.png')} />
+                            <img className="entry-item nav-icon" alt="Profile" src={path.join(__dirname, 'res', 'user', applicant.id + '.png')} />
                             <div className="entry-item name"><b>Name:</b> {applicant.first_name} {applicant.last_name}</div>
                             <div className="entry-item phone"><b>Phone Number:</b> {applicant.phone}</div>
                             <div className="entry-item email"><b>E-mail:</b> {applicant.email}</div>

@@ -16,7 +16,7 @@ export default props => {
 
     return <div className="component-container"> {applicant ?
         <div className="unit-item">
-            <img className="entry-item profile-image" alt="Profile Image" src={path.join(__dirname, 'res', 'user', applicant.id + '.png')} />
+            <img className="entry-item profile-image" alt="Profile" src={path.join(__dirname, 'res', 'user', applicant.id + '.png')} />
             <div className="entry-item name"><b>Name:</b> {applicant.first_name} {applicant.last_name}</div>
             <div className="entry-item phone"><b>Phone Number:</b> {applicant.phone}</div>
             <div className="entry-item email"><b>E-mail:</b> {applicant.email}</div>
@@ -29,6 +29,6 @@ export default props => {
             style={{ "marginTop": "200px", "display": "flex", "justifyContent": "center", "alignItems": "center" }}
             src={path.join(__dirname, "res", "loading3.gif")}
             alt="Loading..."
-        />}}
+        />}
     </div>;
 }

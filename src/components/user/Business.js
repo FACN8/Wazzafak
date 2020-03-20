@@ -22,6 +22,7 @@ export default props => {
     }, [business]);
 
     return <div className="component-container">
+        <h1 className="page-title">Business Page</h1>
         {(business && bVacancies) ? (
             <div className="unit-item">
                 <img className="entry-item business-image" alt="Business Profile" src={path.join(__dirname, 'res', 'buser', business.id + '.png')} />

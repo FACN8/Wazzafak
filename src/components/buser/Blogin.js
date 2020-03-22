@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from "universal-cookie";
-import busersUtil from "../../utils/busers";
+import { getBusiness } from "../../utils/busers";
 
 const cookies = new Cookies();
 
@@ -14,7 +14,7 @@ export default props => {
                     <form className="auth-form" onSubmit={event => {
                         event.preventDefault();
                         if (parseInt(event.target.email.value)) {
-                            busersUtil.getBusiness(parseInt(event.target.email.value))
+                            getBusiness(parseInt(event.target.email.value))
                                 .then(data => {
                                     cookies.set('buser', data[0].id, { path: '/' });
                                     props.setBuser(data[0]);

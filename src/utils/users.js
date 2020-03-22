@@ -8,7 +8,7 @@ const getheaders = {
     }
 };
 
-function getProfile(userid) {
+export const getProfile = (userid) => {
     return window
         .fetch(`${corswazzafak}profile?userid=${userid}`, getheaders)
         .then(res => {
@@ -18,7 +18,7 @@ function getProfile(userid) {
         .then(res => res.json());
 }
 
-function getMyApplications(userid) {
+export const getMyApplications = (userid) => {
     return window
         .fetch(`${corswazzafak}my-applications?userid=${userid}`, getheaders)
         .then(res => {
@@ -28,28 +28,20 @@ function getMyApplications(userid) {
         .then(res => res.json());
 }
 
-function addProfile(first_name, last_name, phone, email, password, year_of_birth, country, bio) {
+export const addProfile = (first_name, last_name, phone, email, password, year_of_birth, country, bio) => {
     return axios.post(`https://wazzafak.herokuapp.com/add-profile`, { first_name, last_name, phone, email, password, year_of_birth, country, bio })
         .then(res => res)
         .catch(error => error);
 }
 
-function setProfile(id, first_name, last_name, phone, email, password, year_of_birth, country, bio) {
+export const setProfile = (id, first_name, last_name, phone, email, password, year_of_birth, country, bio) => {
     return axios.post(`https://wazzafak.herokuapp.com/edit-profile`, { id, first_name, last_name, phone, email, password, year_of_birth, country, bio })
         .then(res => res)
         .catch(error => error);
 }
 
-function deleteProfile(id, password) {
+export const deleteProfile = (id, password) => {
     return axios.post(`https://wazzafak.herokuapp.com/delete-profile`, { id, password })
         .then(res => res)
         .catch(error => error);
 }
-
-export default {
-    getProfile,
-    getMyApplications,
-    addProfile,
-    setProfile,
-    deleteProfile
-};

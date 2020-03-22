@@ -1,6 +1,6 @@
 import React from "react";
-import businessUtil from "../../utils/busers";
-import vacanciesUtil from "../../utils/vacancies";
+import { getBusiness } from "../../utils/busers";
+import { getBVacancies } from "../../utils/vacancies";
 import path from "path";
 
 export default props => {
@@ -9,14 +9,14 @@ export default props => {
 
     React.useEffect(() => {
         if (props.location.search.split('=')[1])
-            businessUtil.getBusiness(props.location.search.split('=')[1]).then(data => {
+            getBusiness(props.location.search.split('=')[1]).then(data => {
                 setBusiness(data[0]);
             }).catch(console.log);
     }, []);
 
     React.useEffect(() => {
         if (business)
-            vacanciesUtil.getBVacancies(business.id)
+            getBVacancies(business.id)
                 .then(setBVacancies)
                 .catch(console.log);
     }, [business]);

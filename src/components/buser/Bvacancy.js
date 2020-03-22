@@ -1,8 +1,8 @@
 import React from "react";
 import path from "path";
 
-import vacanciesUtil from "../../utils/vacancies";
-import applicationsUtil from "../../utils/applications";
+import { getVacancy } from "../../utils/vacancies";
+import { getVacancyApplications, getApplicant } from "../../utils/applications";
 
 export default props => {
     const [vacancy, setVacancy] = React.useState(null);
@@ -11,14 +11,14 @@ export default props => {
 
     React.useEffect(() => {
         if (props.location.search.split('=')[1])
-            vacanciesUtil.getVacancy(props.location.search.split('=')[1]).then(data => {
+            getVacancy(props.location.search.split('=')[1]).then(data => {
                 setVacancy(data[0]);
             }).catch(console.log);
     }, []);
 
     React.useEffect(() => {
         if (vacancy)
-            applicationsUtil.getVacancyApplications(vacancy.id)
+            getVacancyApplications(vacancy.id)
                 .then(setApplications)
                 .catch(console.log);
     }, [vacancy]);
@@ -26,7 +26,7 @@ export default props => {
     React.useEffect(() => {
         if (applications)
             applications.forEach(app => {
-                applicationsUtil.getApplicant(app.user_id)
+                getApplicant(app.user_id)
                     .then(data => {
 
                         data[0].message = app.message;

@@ -199,8 +199,12 @@ body {
   box-shadow: 5px 5px 10px 3px #979797;
 }
 
-/* Intro page title <h1> */
 .page-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #37a55a;
 }
 
 /* Intro page description (<p>) */

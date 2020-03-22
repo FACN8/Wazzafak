@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, a } from "react-router-dom";
 import Cookies from "universal-cookie";
 import path from "path";
 

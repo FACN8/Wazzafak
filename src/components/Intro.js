@@ -12,7 +12,7 @@ export default props => {
                     <p className="page-description">Welcome to Wazzafak, we're here to help you find your next local job. Our platform provides you with job opportunities based on your skills, preferences, location and experience!</p>
                     <a href="/login"><button className="unit-button action-button">I already have an account</button></a>
                     <a href="/register"><button className="unit-button">Create a new account</button></a>
-                    <a href="/blogin" className="clickable-item" style={{ "color": "gray" }}><u>I am a business</u></a>
+                    <a href="/blogin" className="clickable-text">I am a business</a>
                 </div>
             </div>;
 }

@@ -26,7 +26,7 @@ export default props => {
                         <input id="email" className="unit-input" type="text" placeholder="Enter your e-mail" />
                         <input id="password" className="unit-input" type="password" placeholder="Enter your password" />
                         <input className="unit-button action-button" type="submit" value="Login" />
-                        <a href="/bregister">Create a business account.</a>
+                        <a className="clickable-text" href="/bregister">Create a business account</a>
                     </form>
                 </div>
             </div>

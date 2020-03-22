@@ -53,7 +53,7 @@ export default props => {
                 {
                     applicants ?
                         applicants.map(applicant =>
-                            <a href={"/applicant?applicantid=" + applicant.id} className="clickable-item applicant-list-item">
+                            <a href={"/applicant?applicantid=" + applicant.id} className="applicant-list-item">
                                 <img className="entry-item nav-icon" alt="Profile" src={path.join(__dirname, 'res', 'user', applicant.id + '.png')} />
                                 <div className="entry-item name"><b>Name:</b> {applicant.first_name} {applicant.last_name}</div>
                                 <div className="entry-item phone"><b>Phone Number:</b> {applicant.phone}</div>

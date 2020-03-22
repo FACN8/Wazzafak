@@ -24,6 +24,5 @@ export default props => {
                 </p>
                 <a style={{ "color": "white" }} href="/blogin">I am a business</a>
             </div>
-
     }</div >
 }

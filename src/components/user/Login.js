@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'universal-cookie';
-import usersUtil from "../../utils/users";
+import { getProfile } from "../../utils/users";
 
 const cookies = new Cookies();
 
@@ -14,7 +14,7 @@ export default props => {
                     <form className="auth-form" onSubmit={event => {
                         event.preventDefault();
                         if (parseInt(event.target.email.value)) {
-                            usersUtil.getProfile(parseInt(event.target.email.value))
+                            getProfile(parseInt(event.target.email.value))
                                 .then(data => {
                                     cookies.set('user', data[0].id, { path: '/' });
                                     props.setUser(data[0]);

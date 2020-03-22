@@ -1,5 +1,5 @@
 import React from "react";
-import usersUtil from "../../utils/users";
+import { getProfile } from "../../utils/users";
 import path from "path";
 
 export default props => {
@@ -7,7 +7,7 @@ export default props => {
 
     React.useEffect(() => {
         if (parseInt(props.location.search.split('=')[1]))
-            usersUtil.getProfile(parseInt(props.location.search.split('=')[1]))
+            getProfile(parseInt(props.location.search.split('=')[1]))
                 .then(data => {
                     setApplicant(data[0]);
                 })

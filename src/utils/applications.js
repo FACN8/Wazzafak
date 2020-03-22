@@ -8,7 +8,7 @@ const getheaders = {
     }
 };
 
-function getApplicant(applicationid) {
+export const getApplicant = (applicationid) => {
     return window
         .fetch(`${corswazzafak}applicant?applicationid=${applicationid}`, getheaders)
         .then(res => {
@@ -18,19 +18,19 @@ function getApplicant(applicationid) {
         .then(res => res.json());
 }
 
-function addApplication(userid, vacancyid, message) {
+export const addApplication = (userid, vacancyid, message) => {
     return axios.post(`${corswazzafak}add-application`, { userid, vacancyid, message })
         .then(res => res)
         .catch(error => error);
 }
 
-function deleteApplication(applicationid) {
+export const deleteApplication = (applicationid) => {
     return axios.post(`https://wazzafak.herokuapp.com/delete-application`, { applicationid })
         .then(res => res)
         .catch(error => error);
 }
 
-function getVacancyApplications(vacancyid) {
+export const getVacancyApplications = (vacancyid) => {
     return window
         .fetch(`${corswazzafak}vacancy-applications?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
@@ -39,10 +39,3 @@ function getVacancyApplications(vacancyid) {
         })
         .then(res => res.json());
 }
-
-export default {
-    getVacancyApplications,
-    getApplicant,
-    addApplication,
-    deleteApplication
-};

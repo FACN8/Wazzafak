@@ -8,7 +8,7 @@ const getheaders = {
     }
 };
 
-function getVacancy(vacancyid) {
+export const getVacancy = (vacancyid) => {
     return window
         .fetch(`${corswazzafak}vacancy?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
@@ -18,7 +18,7 @@ function getVacancy(vacancyid) {
         .then(res => res.json());
 }
 
-function getVacancies() {
+export const getVacancies = () => {
     return window
         .fetch(`${corswazzafak}vacancies`, getheaders)
         .then(res => {
@@ -29,7 +29,7 @@ function getVacancies() {
         .then(res => res.json());
 }
 
-function getBVacancies(businessid) {
+export const getBVacancies = (businessid) => {
     return window
         .fetch(`${corswazzafak}bvacancies?businessid=${businessid}`, getheaders)
         .then(res => {
@@ -39,7 +39,7 @@ function getBVacancies(businessid) {
         .then(res => res.json());
 }
 
-function getVacancyApplications(vacancyid) {
+export const getVacancyApplications = (vacancyid) => {
     return window
         .fetch(`${corswazzafak}vacancy-applications?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
@@ -49,53 +49,20 @@ function getVacancyApplications(vacancyid) {
         .then(res => res.json());
 }
 
-function addVacancy(business_id, title, wage, work_days, work_hours, descr) {
+export const addVacancy = (business_id, title, wage, work_days, work_hours, descr) => {
     return axios.post(`https://wazzafak.herokuapp.com/add-vacancy`, { business_id, title, wage, work_days, work_hours, descr })
         .then(res => res)
         .catch(error => error);
 }
 
-function setVacancy(id, business_id, title, wage, work_days, work_hours, descr) {
+export const setVacancy = (id, business_id, title, wage, work_days, work_hours, descr) => {
     return axios.post(`https://wazzafak.herokuapp.com/edit-vacancy`, { id, business_id, title, wage, work_days, work_hours, descr })
         .then(res => res)
         .catch(error => error);
 }
 
-function deleteVacancy(vacancyid) {
+export const deleteVacancy = (vacancyid) => {
     return axios.post(`https://wazzafak.herokuapp.com/delete-vacancy`, { vacancyid })
         .then(res => res)
         .catch(error => error);
 }
-
-export default {
-    getVacancy,
-    getVacancies,
-    getBVacancies,
-    getVacancyApplications,
-    addVacancy,
-    setVacancy,
-    deleteVacancy
-};
-
-// async function postData(url = '', data = {}) {
-//     // Default options are marked with *
-//     const response = await fetch(url, {
-//       method: 'POST', // *GET, POST, PUT, DELETE, etc.
-//       mode: 'cors', // no-cors, *cors, same-origin
-//       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-//       credentials: 'same-origin', // include, *same-origin, omit
-//       headers: {
-//         'Content-Type': 'application/json'
-//         // 'Content-Type': 'application/x-www-form-urlencoded',
-//       },
-//       redirect: 'follow', // manual, *follow, error
-//       referrerPolicy: 'no-referrer', // no-referrer, *client
-//       body: JSON.stringify(data) // body data type must match "Content-Type" header
-//     });
-//     return await response.json(); // parses JSON response into native JavaScript objects
-//   }
-
-//   postData('https://example.com/answer', { answer: 42 })
-//     .then((data) => {
-//       console.log(data); // JSON data parsed by `response.json()` call
-//     });

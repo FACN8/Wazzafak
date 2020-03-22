@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
-import usersUtil from "./utils/users";
-import busersUtil from "./utils/busers";
-import vacanciesUtil from "./utils/vacancies";
+import { getProfile, getMyApplications } from "./utils/users";
+import { getBusiness } from "./utils/busers";
+import { getVacancies, getBVacancies } from "./utils/vacancies";
 
 import "./App.css";
 import User from "./components/user";
@@ -26,9 +26,9 @@ function App() {
     (async () => {
       try {
         if (cookies.get('user')) {
-          const user = await usersUtil.getProfile(parseInt(cookies.get('user')));
-          const vacancies = await vacanciesUtil.getVacancies();
-          const applications = await usersUtil.getMyApplications(user[0].id);
+          const user = await getProfile(parseInt(cookies.get('user')));
+          const vacancies = await getVacancies();
+          const applications = await getMyApplications(user[0].id);
 
           setUser(user[0]);
           setVacancies(vacancies);
@@ -38,8 +38,8 @@ function App() {
             return obj;
           }));
         } else if (cookies.get('buser')) {
-          const buser = await busersUtil.getBusiness(parseInt(cookies.get('buser')));
-          const bvacancies = await vacanciesUtil.getBVacancies(buser[0].id);
+          const buser = await getBusiness(parseInt(cookies.get('buser')));
+          const bvacancies = await getBVacancies(buser[0].id);
 
           setBuser(buser[0]);
           setVacancies(bvacancies);

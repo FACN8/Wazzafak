@@ -8,7 +8,7 @@ const getheaders = {
     }
 };
 
-function getBusiness(businessid) {
+export const getBusiness = (businessid) => {
     return window
         .fetch(`${corswazzafak}business?businessid=${businessid}`, getheaders)
         .then(res => {
@@ -18,7 +18,7 @@ function getBusiness(businessid) {
         .then(res => res.json());
 }
 
-function getApplicants(vacancyid) {
+export const getApplicants = (vacancyid) => {
     return window
         .fetch(`${corswazzafak}applicants?vacancyid=${vacancyid}`, getheaders)
         .then(res => {
@@ -28,22 +28,20 @@ function getApplicants(vacancyid) {
         .then(res => res.json());
 }
 
-function addBusiness(bname, phone, email, password, address, city, country, open_days, open_hours, descr) {
+export const addBusiness = (bname, phone, email, password, address, city, country, open_days, open_hours, descr) => {
     return axios.post(`https://wazzafak.herokuapp.com/add-business`, { bname, phone, email, password, address, city, country, open_days, open_hours, descr })
         .then(res => res)
         .catch(error => error);
 }
 
-function setBusiness(id, bname, phone, email, password, address, city, country, open_days, open_hours, descr) {
+export const setBusiness = (id, bname, phone, email, password, address, city, country, open_days, open_hours, descr) => {
     return axios.post(`https://wazzafak.herokuapp.com/edit-business`, { id, bname, phone, email, password, address, city, country, open_days, open_hours, descr })
         .then(res => res)
         .catch(error => error);
 }
 
-function deleteBusiness(id, password) {
+export const deleteBusiness = (id, password) => {
     return axios.post(`https://wazzafak.herokuapp.com/delete-business`, { id, password })
         .then(res => res)
         .catch(error => error);
 }
-
-export default { getBusiness, getApplicants, addBusiness, setBusiness, deleteBusiness };

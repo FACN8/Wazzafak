@@ -55,55 +55,53 @@ function App() {
       <Header user={user} buser={buser} />
       <Router>
         <Switch>
-          <Route path="/" exact>
+          <Route path="/" exact component={props =>
             <Intro user={user} />
-          </Route>
-          <Route path="/applications">
-            <User.Applications user={user} vacancies={vacancies} applications={applications} setApplications={setApplications} />
-          </Route>
+          } />
+          <Route path="/applications" component={props =>
+            <User.Applications {...props} user={user} vacancies={vacancies} applications={applications} setApplications={setApplications} />
+          } />
           <Route path="/business" component={props =>
             <User.Business {...props} user={user} />
           }>
           </Route>
-          <Route path="/login">
-            <User.Login user={user} setUser={setUser} />
-          </Route>
-          <Route path="/profile">
-            <User.Profile user={user} setUser={setUser} />
-          </Route>
-          <Route path="/register">
-            <User.Register user={user} setUser={setUser} />
-          </Route>
-          <Route path="/vacancies">
-            <User.Vacancies user={user} vacancies={vacancies} setVacancies={setVacancies} />
-          </Route>
+          <Route path="/login" component={props =>
+            <User.Login {...props} user={user} setUser={setUser} />
+          } />
+          <Route path="/profile" component={props =>
+            <User.Profile {...props} user={user} setUser={setUser} />
+          } />
+          <Route path="/register" component={props =>
+            <User.Register {...props} user={user} setUser={setUser} />
+          } />
+          <Route path="/vacancies" component={props =>
+            <User.Vacancies {...props} user={user} vacancies={vacancies} setVacancies={setVacancies} />
+          } />
           <Route path="/vacancy" component={props =>
             <User.Vacancy {...props} user={user} applications={applications} />
-          }>
-          </Route>
+          } />
           <Route path="/applicant" component={props =>
             <Buser.Applicant {...props} buser={buser} />
-          }></Route>
-          <Route path="/blogin">
-            <Buser.Blogin buser={buser} setBuser={setBuser} />
-          </Route>
-          <Route path="/bprofile">
-            <Buser.Bprofile buser={buser} setBuser={setBuser} />
-          </Route>
-          <Route path="/bregister">
-            <Buser.Bregister buser={buser} setBuser={setBuser} />
-          </Route>
-          <Route path="/bvacancies">
-            <Buser.Bvacancies buser={buser} vacancies={vacancies} />
-          </Route>
+          } />
+          <Route path="/blogin" component={props =>
+            <Buser.Blogin {...props} buser={buser} setBuser={setBuser} />
+          } />
+          <Route path="/bprofile" component={props =>
+            <Buser.Bprofile {...props} buser={buser} setBuser={setBuser} />
+          } />
+          <Route path="/bregister" component={props =>
+            <Buser.Bregister {...props} buser={buser} setBuser={setBuser} />
+          } />
+          <Route path="/bvacancies" component={props =>
+            <Buser.Bvacancies {...props} buser={buser} vacancies={vacancies} />
+          } />
           <Route path="/bvacancy" component={props =>
             <Buser.Bvacancy {...props} buser={buser} />
-          }>
-          </Route>
+          } />
         </Switch>
       </Router>
       <Footer />
-    </div>
+    </div >
   );
 }
 

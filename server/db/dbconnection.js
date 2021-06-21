@@ -1,11 +1,13 @@
 const { Pool } = require('pg');
-const url = require('url');
+//const url = require('url');
 require('dotenv').config();
 
-if (!process.env.DB_URL) throw new Error('Enviroment variable DB_URL must be set')
+if (!process.env.DATABASE_URL) throw new Error('Enviroment variable DATABASE_URL must be set')
 
-const params = url.parse(process.env.DB_URL);
-const [user, password] = params.auth.split(':');
+const params = new URL(process.env.DATABASE_URL);
+console.log(params);
+const user = params.username;
+const password = params.password;
 const options = {
     host: params.hostname,
     port: params.port,
@@ -15,5 +17,5 @@ const options = {
     password,
     ssl: params.hostname !== 'localhost'
 }
-
+console.log(options);
 module.exports = new Pool(options);

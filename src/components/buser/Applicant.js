@@ -12,7 +12,7 @@ export default props => {
                     setApplicant(data[0]);
                 })
                 .catch(console.log);
-    }, []);
+    }, [props.location.search]);
 
     return <div className="component-container">
         <h1 className="page-title">Applicant Information</h1>

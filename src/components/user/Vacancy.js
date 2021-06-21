@@ -12,7 +12,7 @@ export default props => {
             getVacancy(props.location.search.split('=')[1]).then(data => {
                 setVacancy(data[0]);
             }).catch(console.log);
-    }, [props.applications]);
+    }, [props.applications, props.location.search]);
 
     return <div className="component-container">
         <h1 className="page-title">Vacancy Information</h1>

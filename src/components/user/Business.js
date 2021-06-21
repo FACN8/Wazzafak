@@ -12,7 +12,7 @@ export default props => {
             getBusiness(props.location.search.split('=')[1]).then(data => {
                 setBusiness(data[0]);
             }).catch(console.log);
-    }, []);
+    }, [props.location.search]);
 
     React.useEffect(() => {
         if (business)

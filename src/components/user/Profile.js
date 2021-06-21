@@ -6,7 +6,7 @@ export default props => {
         <h1 className="page-title">My Profile</h1>
         {props.user ?
             <div className="unit-item">
-                <img className="entry-item profile-image" alt="Profile Image" src={path.join(__dirname, 'res', 'user', props.user.id + '.png')} />
+                <img className="entry-item profile-image" alt="Profile" src={path.join(__dirname, 'res', 'user', props.user.id + '.png')} />
                 <div className="entry-item name"><b>Name:</b> {props.user.first_name} {props.user.last_name}</div>
                 <div className="entry-item phone"><b>Phone Number:</b> {props.user.phone}</div>
                 <div className="entry-item email"><b>E-mail:</b> {props.user.email}</div>

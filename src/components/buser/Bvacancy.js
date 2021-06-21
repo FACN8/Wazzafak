@@ -14,7 +14,7 @@ export default props => {
             getVacancy(props.location.search.split('=')[1]).then(data => {
                 setVacancy(data[0]);
             }).catch(console.log);
-    }, []);
+    }, [props.location.search]);
 
     React.useEffect(() => {
         if (vacancy)

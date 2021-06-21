@@ -8,7 +8,7 @@ const dbConnection = require('../dbconnection');
 module.exports.getProfile = (userid, cb) => {
     const query = `SELECT id,first_name,last_name,phone,email,year_of_birth,country,bio
      FROM users WHERE id=$1;`;
-    dbConnection.query(query, [userid], (err, res) => {
+    dbConnection.query(query, [userid],(err, res) => {
         if (err) return cb(err);
         cb(null, res.rows);
     });
